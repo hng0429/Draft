@@ -1,4 +1,4 @@
-# FastClicker — 순차 고속 클릭 (Windows)
+# FastClicker — 순차 고속 클릭 (Windows / macOS)
 
 화면의 원하는 위치들을 **등록한 순서대로 매우 빠르게** 클릭하는 Windows 앱입니다.
 
@@ -33,7 +33,31 @@
 - 관리자 권한으로 실행된 프로그램은 클릭이 전달되지 않을 수 있습니다. 그런 경우 FastClicker도 관리자 권한으로 실행하세요.
 - 게임/서비스 이용 약관에서 자동 입력을 금지하는 경우가 있으니 주의하세요.
 
-## 빌드
+## macOS 버전 (`FastClickerMac/`)
+
+기능은 Windows 버전과 같고, 프로필(JSON) 파일 형식도 같습니다. macOS 13 이상, Apple Silicon / Intel 모두 지원.
+
+| 단축키 | 동작 |
+|---|---|
+| ⌃⌥A 또는 F2 | 현재 마우스 위치를 지점으로 추가 |
+| ⌃⌥S 또는 F6 | 시작 / 정지 |
+| Esc | 실행 중 비상 정지 |
+
+처음 실행 시:
+
+1. `FastClicker-macOS.zip`을 풀고 `FastClicker.app`을 **우클릭 → 열기** (서명되지 않은 앱이라 Gatekeeper 경고가 뜹니다)
+2. 앱 상단의 **권한 요청** → 시스템 설정 → 개인정보 보호 및 보안 → **손쉬운 사용**에서 FastClicker를 켭니다. 권한이 없으면 클릭이 전달되지 않습니다.
+3. 앱을 새 버전으로 교체한 뒤 클릭이 안 되면 손쉬운 사용 목록에서 FastClicker를 지웠다가 다시 추가하세요.
+
+좌표는 macOS 포인트 단위(주 모니터 왼쪽 위가 원점)라 Windows에서 저장한 프로필의 좌표는 화면에 맞게 다시 잡아야 할 수 있습니다.
+
+빌드 (Xcode 또는 Command Line Tools 필요):
+
+```
+cd FastClickerMac && ./build-app.sh     # → build/FastClicker.app, build/FastClicker-macOS.zip
+```
+
+## 빌드 (Windows)
 
 Windows + .NET 8 SDK:
 
@@ -41,4 +65,6 @@ Windows + .NET 8 SDK:
 dotnet publish FastClicker/FastClicker.csproj -c Release -r win-x64 --self-contained -p:PublishSingleFile=true
 ```
 
-GitHub에 push하면 Actions(`Build FastClicker`)가 자동으로 `FastClicker.exe`를 빌드해 아티팩트로 올립니다.
+GitHub에 push하면 Actions가 자동으로 빌드해 아티팩트로 올립니다.
+- `Build FastClicker` → `FastClicker-win-x64` (FastClicker.exe)
+- `Build FastClicker (macOS)` → `FastClicker-macOS` (FastClicker.app zip)
