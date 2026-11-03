@@ -3,3 +3,6 @@ obj/
 publish/
 *.user
 .vs/
+.build/
+FastClickerMac/build/
+.swiftpm/
